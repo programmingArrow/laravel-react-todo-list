@@ -1,24 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Route } from 'react-router-dom';
+import Header from './Header';
+import ItemList from './ItemList';
+import AddItem from './AddItem';
+
 
 function App() {
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">App Component</div>
-
-                        <div className="card-body">I'm an example app component!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <React.Fragment>
+            <Header />
+            <Route exact path="/" component={ItemList} />
+            <Route path="/add-new-item" component={AddItem} />
+        </React.Fragment>
     );
 }
 
 export default App;
-
-if (document.getElementById('root')) {
-    ReactDOM.render(<App />, document.getElementById('root'));
-}
