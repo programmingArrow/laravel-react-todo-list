@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AddItem() {
     return (
-        <div className="container">
+        <div className="container my-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="card">
@@ -19,6 +19,7 @@ export default function AddItem() {
                                     <label className="col-form-label">Description</label>
                                     <textarea className="form-control" />
                                 </div>
+                                <button className="btn btn-success">Submit</button>
                             </form>
                         </div>
                     </div>
