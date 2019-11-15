@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
 use Illuminate\Http\Request;
+
+use App\Item;
 
 class ItemController extends Controller
 {
@@ -14,7 +15,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+
+        return response()->json(['success' => true, 'items' => $items]);
     }
 
     /**
@@ -35,7 +38,15 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'string|nullable'
+        ]);
+
+        $item = new Item;
+        $item->create($data);
+
+        return response()->json(['success' => true, 'message' => 'Task Item added successfully']);
     }
 
     /**
@@ -46,7 +57,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return response()->json(['success' => true, 'item' => $item]);
     }
 
     /**
@@ -69,7 +80,14 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $data = $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'string|nullable'
+        ]);
+
+        $item->update($data);
+
+        return response()->json(['success' => true, 'message' => 'Task Item updated successfully']);
     }
 
     /**
@@ -80,6 +98,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return response()->json(['success' => true, 'message' => 'Task Item deleted successfully']);
     }
 }
