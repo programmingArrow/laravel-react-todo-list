@@ -100,6 +100,8 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        return response()->json(['success' => true, 'message' => 'Task Item deleted successfully']);
+        $items = Item::all();
+
+        return response()->json(['success' => true, 'message' => 'Task Item deleted successfully', 'items' => $items]);
     }
 }
