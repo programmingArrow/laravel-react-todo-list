@@ -27,8 +27,8 @@ export default class ItemList extends Component {
 
     handleDelete(item) {
         confirmAlert({
-            title: "Confirm to delete",
-            message: "Are you sure you want to perform this action.",
+            title: "Confirm to Delete",
+            message: "Are you sure you want to perform this action?",
             buttons: [
                 {
                     label: "Yes",
@@ -62,8 +62,9 @@ export default class ItemList extends Component {
                         return (
                             <li key={item.id} className="list-group-item">
                                 <div className="d-flex">
-                                    {item.title}
+                                    <span completedStyle>{item.title}</span>
                                     <span className="ml-auto">
+                                        <button className="btn btn-success btn-sm mx-1"><i class="fa fa-check" aria-hidden="true"></i></button>
                                         <button className="btn btn-primary btn-sm mx-1">
                                             <i
                                                 className="fa fa-pencil"

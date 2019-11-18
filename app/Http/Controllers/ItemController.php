@@ -104,4 +104,20 @@ class ItemController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Task Item deleted successfully', 'items' => $items]);
     }
+
+    /**
+     * Mark the specified resource as completed.
+     *
+     * @param  \App\Item  $item
+     * @return \Illuminate\Http\Response
+     */
+    public function markCompleted(Item $item)
+    {
+        $item->completed = 1;
+        $item->save();
+
+        $items = Item::all();
+
+        return response()->json(['success' => true, 'message' => 'Task marked completed', 'items' => $items]);
+    }
 }

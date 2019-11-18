@@ -74170,8 +74170,8 @@ function (_Component) {
       var _this3 = this;
 
       Object(react_confirm_alert__WEBPACK_IMPORTED_MODULE_2__["confirmAlert"])({
-        title: "Confirm to delete",
-        message: "Are you sure you want to perform this action.",
+        title: "Confirm to Delete",
+        message: "Are you sure you want to perform this action?",
         buttons: [{
           label: "Yes",
           onClick: function onClick() {
@@ -74207,9 +74207,16 @@ function (_Component) {
           className: "list-group-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "d-flex"
-        }, item.title, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          completedStyle: true
+        }, item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "ml-auto"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-success btn-sm mx-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "fa fa-check",
+          "aria-hidden": "true"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-primary btn-sm mx-1"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fa fa-pencil",
