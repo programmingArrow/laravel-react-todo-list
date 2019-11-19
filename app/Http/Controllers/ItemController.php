@@ -111,7 +111,7 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function markCompleted(Item $item)
+    public function markAsCompleted(Item $item)
     {
         $item->completed = 1;
         $item->save();

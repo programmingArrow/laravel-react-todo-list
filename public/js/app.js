@@ -74193,6 +74193,14 @@ function (_Component) {
       });
     }
   }, {
+    key: "handleCompleted",
+    value: function handleCompleted(item) {
+      // console.log(item);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("items/".concat(item.id, "/mark-as-completed")).then(function (response) {
+        console.log(response);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this4 = this;
@@ -74207,14 +74215,15 @@ function (_Component) {
           className: "list-group-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "d-flex"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          completedStyle: true
-        }, item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, item.title, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "ml-auto"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-success btn-sm mx-1"
+          className: "btn btn-success btn-sm mx-1",
+          onClick: function onClick() {
+            return _this4.handleCompleted(item);
+          }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          "class": "fa fa-check",
+          className: "fa fa-check",
           "aria-hidden": "true"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-primary btn-sm mx-1"

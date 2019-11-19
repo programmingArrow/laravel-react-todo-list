@@ -18,3 +18,5 @@ use Illuminate\Http\Request;
 // });
 
 Route::apiResource('items', 'ItemController');
+
+Route::post('items/{item}/mark-as-completed', 'ItemController@markAsCompleted');

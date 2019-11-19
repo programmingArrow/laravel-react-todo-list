@@ -54,6 +54,15 @@ export default class ItemList extends Component {
         });
     }
 
+    handleCompleted(item){
+        // console.log(item);
+        axios
+            .post(`items/${item.id}/mark-as-completed`)
+            .then(response => {
+                console.log(response);
+            })
+    }
+
     render() {
         return (
             <div className="container my-5">
@@ -62,9 +71,13 @@ export default class ItemList extends Component {
                         return (
                             <li key={item.id} className="list-group-item">
                                 <div className="d-flex">
-                                    <span completedStyle>{item.title}</span>
+                                    {item.title}
                                     <span className="ml-auto">
-                                        <button className="btn btn-success btn-sm mx-1"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                        <button 
+                                            className="btn btn-success btn-sm mx-1" 
+                                            onClick={() => this.handleCompleted(item)}>
+                                            <i className="fa fa-check" aria-hidden="true"></i>
+                                        </button>
                                         <button className="btn btn-primary btn-sm mx-1">
                                             <i
                                                 className="fa fa-pencil"
