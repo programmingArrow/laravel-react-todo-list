@@ -74195,37 +74195,46 @@ function (_Component) {
   }, {
     key: "handleCompleted",
     value: function handleCompleted(item) {
+      var _this4 = this;
+
       // console.log(item);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("items/".concat(item.id, "/mark-as-completed")).then(function (response) {
-        console.log(response);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/items/".concat(item.id, "/mark-as-completed")).then(function (response) {
+        // console.log(response);
+        _this4.setState({
+          items: response.data.items
+        });
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container my-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "list-group list-group-flush"
       }, this.state.items.length === 0 ? 'Loading...' : this.state.items.map(function (item) {
+        var itemTitle = item.completed === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, item.title) : item.title;
+        var completedButton = item.completed === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-success btn-sm mx-1",
+          onClick: function onClick() {
+            return _this5.handleCompleted(item);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fa fa-check",
+          "aria-hidden": "true"
+        })) : '';
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: item.id,
           className: "list-group-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "d-flex"
-        }, item.title, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, itemTitle, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "ml-auto"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-success btn-sm mx-1",
-          onClick: function onClick() {
-            return _this4.handleCompleted(item);
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fa fa-check",
-          "aria-hidden": "true"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, completedButton, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-primary btn-sm mx-1"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fa fa-pencil",
@@ -74233,7 +74242,7 @@ function (_Component) {
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-danger btn-sm mx-1",
           onClick: function onClick() {
-            return _this4.handleDelete(item);
+            return _this5.handleDelete(item);
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fa fa-trash",

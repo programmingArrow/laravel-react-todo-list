@@ -57,9 +57,15 @@ export default class ItemList extends Component {
     handleCompleted(item){
         // console.log(item);
         axios
-            .post(`items/${item.id}/mark-as-completed`)
+            .post(`/api/items/${item.id}/mark-as-completed`)
             .then(response => {
-                console.log(response);
+                // console.log(response);
+                this.setState({
+                    items: response.data.items
+                })
+            })
+            .catch(error => {
+                console.log(error);
             })
     }
 
@@ -68,16 +74,18 @@ export default class ItemList extends Component {
             <div className="container my-5">
                 <ul className="list-group list-group-flush">
                     {this.state.items.length === 0 ? 'Loading...' : this.state.items.map(item => {
+                        const itemTitle = item.completed === 1 ? <strike>{item.title}</strike> : item.title;
+                        const completedButton = item.completed === 0 ? <button
+                            className="btn btn-success btn-sm mx-1"
+                            onClick={() => this.handleCompleted(item)}>
+                            <i className="fa fa-check" aria-hidden="true"></i>
+                        </button> : '';
                         return (
                             <li key={item.id} className="list-group-item">
                                 <div className="d-flex">
-                                    {item.title}
+                                    {itemTitle}
                                     <span className="ml-auto">
-                                        <button 
-                                            className="btn btn-success btn-sm mx-1" 
-                                            onClick={() => this.handleCompleted(item)}>
-                                            <i className="fa fa-check" aria-hidden="true"></i>
-                                        </button>
+                                        {completedButton}
                                         <button className="btn btn-primary btn-sm mx-1">
                                             <i
                                                 className="fa fa-pencil"
