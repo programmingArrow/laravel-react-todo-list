@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 export default class AddItem extends Component {
+    state = {
+        title: '',
+        description: ''
+    };
+
     constructor(){
         super();
         
-        this.state = {
-            title: '',
-            description: ''
-        };
+        // this.state = {
+        //     title: '',
+        //     description: ''
+        // };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +49,6 @@ export default class AddItem extends Component {
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-header">Add New Item</div>
-    
                             <div className="card-body">
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="form-group">
